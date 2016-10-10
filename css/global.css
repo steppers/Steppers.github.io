@@ -1,0 +1,23 @@
+/*For HTML5 compatability*/
+header, section, footer, aside, nav, main, article, figure {
+    display: block;
+}
+
+body
+{
+    font-family: 'Press Start 2P', cursive;
+    background-color: #001800;
+    color: #00E000;
+    text-shadow: 0 0 15px #00FF00;
+}
+
+.header-bar
+{
+    margin: auto;
+    font-size: 20pt;
+}
+
+div.website-title
+{
+
+}
