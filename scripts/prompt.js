@@ -16,7 +16,7 @@ function init() {
 
     user_input = "";
     update_prompt(current_addr);
-    update_output("");
+    update_output("type --help for details");
 
     setInterval(function(){ toggle_cursor() }, 500);
 }
@@ -65,6 +65,12 @@ var commands = {
                 break;
         }
     },
+    "man" : function(cmd) {
+        
+    },
+    "--help" : function(cmd) {
+        update_output(cmd + " >" + " --help, cd, ls, man")
+    }
 };
 
 function execute_command() {
