@@ -7,7 +7,7 @@ var commands = {
     "mkdir" : function(cmd, input) {return mkdir.execute(cmd, input); },
     "echo" : function(cmd, input) { return echo.execute(cmd, input); },
     "cat" : function(cmd, input) { return cat.execute(cmd, input); },
-    "mkfile" : function(cmd, input) { return mkfile.execute(cmd, input); },
+    "rm" : function(cmd, input) { return rm.execute(cmd, input); },
 };
 
 var cd = {
@@ -73,16 +73,19 @@ var echo = {
     }
 }
 
-var mkfile = {
+var rm = {
     execute : function(cmd) {
         if(cmd.length > 1) {
-            var file_name = cmd[1];
-            var out = "";
-            for (i = 2; i < cmd.length; i++) {
-
-                out += cmd[i] + " ";
+            var entry;
+            if(cmd[1].startsWith("/")) {
+                entry = env.fs.get_entry(cmd[1]);
+            } else {
+                entry = env.wd.get_relative_entry(cmd[1]);
             }
-            environment.working_directory.new_file(file_name).content = out;
+            if(entry === null) {
+                return "Could not find file: " + cmd[1];
+            }
+            entry.parent.remove_entry(entry.name);
         }
     }
 }

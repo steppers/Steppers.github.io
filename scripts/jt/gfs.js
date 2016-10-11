@@ -77,9 +77,7 @@ function glitch_fs_entry(name, parent, type) {
         }
     }
 
-    this.swap_entries = function(name1, name2) {
-        var i1 = this.get_entry_index(name1);
-        var i2 = this.get_entry_index(name2);
+    this.swap_entries = function(i1, i2) {
         var tmp = this.content[i1];
         this.content[i1] = this.content[i2];
         this.content[i2] = tmp;
